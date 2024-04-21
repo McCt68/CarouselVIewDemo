@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CarouselVIewDemo.MVVM.Views.StartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StartPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <CarouselView
+            x:Name="CarouselTest"
+            Grid.Row="0"
+            Margin="4"
+            CurrentItemChangedCommand="{Binding CarouselViewItemChanged}"
+            HorizontalOptions="Center"
+            IndicatorView="indicatorView"
+            ItemsSource="{Binding CarouselViewItems}"
+            VerticalOptions="Center">
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="*,*">
+                        <Frame
+                            Grid.Row="0"
+                            BackgroundColor="Beige"
+                            BorderColor="DarkOrange"
+                            CornerRadius="50"
+                            HasShadow="True"
+                            HeightRequest="110"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                Text="{Binding ProductName}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Label
+                            x:Name="{Binding ProductPrice}"
+                            Grid.Row="1"
+                            Padding="0"
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            HorizontalOptions="Center"
+                            Text="{Binding ProductPrice, StringFormat='{0:kr #,##0.00}'}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView
+            x:Name="indicatorView"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="2"
+            HorizontalOptions="Center"
+            IndicatorColor="Black"
+            IndicatorSize="8"
+            IsVisible="True"
+            SelectedIndicatorColor="DarkOrange"
+            VerticalOptions="Center" />
+
+        <Label
+            Grid.Row="2"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="{Binding TotalPrice}" />
+
+    </Grid>
+</ContentPage>
+
+<!--
+    NOT USED ATM
+    Position="{Binding ProductPrice}"
+-->
+<!--  CurrentItem="{Binding}"  -->
